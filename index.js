@@ -232,15 +232,20 @@ app.delete('/items/:id', (req, res) => {
  *         description: Item não encontrado.
  */
 app.patch('/items/:id', (req, res) => {
-    var body = req.body;
     const id = req.params.id;
-    console.log(`PATCH /items/${id}`)
+    const updates = req.body;
+
+    console.log(`PATCH /items/${id}`);
+
     const xDateLatitude = req.headers['x-date-latitude'];
     const xDateLongitude = req.headers['x-date-longitude'];
     console.log(`X-Date-Latitude: ${xDateLatitude} X-Date-Longitude ${xDateLongitude}`);
+
     if (dataMap.has(id)) {
-        dataMap.set(id, body);
-        res.status(201).json(body);
+        const existingItem = dataMap.get(id);
+        const updatedItem = { ...existingItem, ...updates }; // faz o merge dos campos
+        dataMap.set(id, updatedItem);
+        res.status(200).json(updatedItem);
     } else {
         res.status(404).json({ error: 'Item não encontrado' });
     }
