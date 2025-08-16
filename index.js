@@ -57,9 +57,9 @@ const dataMap = new Map();
  */
 app.get('/items', (req, res) => {
     console.log("GET /items")
-    const xDateLatitude = req.headers['x-date-latitude'];
-    const xDateLongitude = req.headers['x-date-longitude'];
-    console.log(`X-Date-Latitude: ${xDateLatitude} X-Date-Longitude ${xDateLongitude}`);
+    const xDataLatitude = req.headers['x-data-latitude'];
+    const xDataLongitude = req.headers['x-data-longitude'];
+    console.log(`x-data-Latitude: ${xDataLatitude} x-data-Longitude ${xDataLongitude}`);
     const items = Array.from(dataMap, ([id, value]) => ({ id, value }));
     res.json(items);
 });
@@ -94,9 +94,9 @@ app.get('/items', (req, res) => {
 app.get('/items/:id', (req, res) => {
     const id = req.params.id;
     console.log(`GET /items/${id}`)
-    const xDateLatitude = req.headers['x-date-latitude'];
-    const xDateLongitude = req.headers['x-date-longitude'];
-    console.log(`X-Date-Latitude: ${xDateLatitude} X-Date-Longitude ${xDateLongitude}`);
+    const xDataLatitude = req.headers['x-data-latitude'];
+    const xDataLongitude = req.headers['x-data-longitude'];
+    console.log(`x-data-Latitude: ${xDataLatitude} x-data-Longitude ${xDataLongitude}`);
     if (dataMap.has(id)) {
         res.json({ id, value: dataMap.get(id) });
     } else {
@@ -137,9 +137,9 @@ app.get('/items/:id', (req, res) => {
  */
 app.post('/items', (req, res) => {
     console.log("POST /items");
-    const xDateLatitude = req.headers['x-date-latitude'];
-    const xDateLongitude = req.headers['x-date-longitude'];
-    console.log(`X-Date-Latitude: ${xDateLatitude} X-Date-Longitude ${xDateLongitude}`);
+    const xDataLatitude = req.headers['x-data-latitude'];
+    const xDataLongitude = req.headers['x-data-longitude'];
+    console.log(`x-data-Latitude: ${xDataLatitude} x-data-Longitude ${xDataLongitude}`);
     const body = req.body;
 
     // Verifica se body é um array ou um único objeto
@@ -196,9 +196,9 @@ app.post('/items', (req, res) => {
 app.delete('/items/:id', (req, res) => {
     const id = req.params.id;
     console.log(`DELETE /items/${id}`)
-    const xDateLatitude = req.headers['x-date-latitude'];
-    const xDateLongitude = req.headers['x-date-longitude'];
-    console.log(`X-Date-Latitude: ${xDateLatitude} X-Date-Longitude ${xDateLongitude}`);
+    const xDataLatitude = req.headers['x-data-latitude'];
+    const xDataLongitude = req.headers['x-data-longitude'];
+    console.log(`x-data-Latitude: ${xDataLatitude} x-data-Longitude ${xDataLongitude}`);
     if (dataMap.has(id)) {
         dataMap.delete(id);
         res.json({ message: 'Item deletado com sucesso' });
@@ -237,9 +237,9 @@ app.patch('/items/:id', (req, res) => {
 
     console.log(`PATCH /items/${id}`);
 
-    const xDateLatitude = req.headers['x-date-latitude'];
-    const xDateLongitude = req.headers['x-date-longitude'];
-    console.log(`X-Date-Latitude: ${xDateLatitude} X-Date-Longitude ${xDateLongitude}`);
+    const xDataLatitude = req.headers['x-data-latitude'];
+    const xDataLongitude = req.headers['x-data-longitude'];
+    console.log(`x-data-Latitude: ${xDataLatitude} x-data-Longitude ${xDataLongitude}`);
 
     if (dataMap.has(id)) {
         const existingItem = dataMap.get(id);
